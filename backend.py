@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "messages.db")
-ADMIN_SECRET = os.environ.get("ADMIN_SECRET", KEY)
+ADMIN_SECRET = os.getenv("ADMIN_SECRET")
 
 async def init_db():
     async with aiosqlite.connect(DB_PATH) as db:
