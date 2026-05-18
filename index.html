@@ -512,6 +512,57 @@ footer span { color: var(--accent); }
   .projects-grid { grid-template-columns: 1fr; }
   .hero-stats { gap: 1.2rem; }
 }
+
+/* ===== More Projects Button ===== */
+
+.more-projects{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    margin-top:50px;
+    text-align:center;
+}
+
+.github-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 28px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(88,166,255,0.12),
+        rgba(188,140,255,0.12)
+    );
+
+    border:1px solid rgba(88,166,255,0.25);
+    border-radius:14px;
+
+    color:var(--text);
+    font-size:1rem;
+    font-weight:600;
+    text-decoration:none;
+
+    transition:all 0.35s ease;
+}
+
+.github-btn:hover{
+    transform:translateY(-4px);
+    border-color:var(--accent);
+    box-shadow:0 10px 28px rgba(88,166,255,0.18);
+}
+
+.github-btn i{
+    font-size:1.15rem;
+    color:var(--accent);
+}
+
+.github-note{
+    margin-top:14px;
+    color:var(--muted);
+    font-size:0.95rem;
+}
 </style>
 </head>
 <body>
@@ -562,15 +613,15 @@ footer span { color: var(--accent); }
       <div class="hero-label">Available for opportunities</div>
       <h1 class="hero-name">Sneha<span class="line2">Ghosh</span></h1>
       <p class="hero-title">AI Developer · GenAI Engineer · ML Practitioner</p>
-      <p class="hero-desc">Building production-grade intelligent systems across NLP, Computer Vision, RAG, and Voice AI. Transforming real-world business requirements into scalable AI applications.</p>
+      <p class="hero-desc">Building production-grade intelligent systems across Agentic AI, RAG, NLP, Computer Vision, and related fields . Transforming real-world business requirements into scalable AI applications.</p>
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-num">28+</span>
+          <span class="stat-num">30+</span>
           <span class="stat-label">Projects Built</span>
         </div>
         <div class="stat-item">
           <span class="stat-num">4</span>
-          <span class="stat-label">Months at Darpin</span>
+          <span class="stat-label">Months at Darpin Dynamics</span>
         </div>
         <div class="stat-item">
           <span class="stat-num">8.25</span>
@@ -625,7 +676,7 @@ footer span { color: var(--accent); }
     <h2 class="section-heading reveal">Passionate about building<br>intelligent systems</h2>
     <div class="about-grid">
       <div class="about-text reveal">
-        <p>I'm a B.Tech graduate in Information Technology with hands-on experience building production-oriented AI solutions. My work spans NLP pipelines, Computer Vision, Retrieval-Augmented Generation (RAG), Voice AI, and document intelligence systems.</p>
+        <p>I'm a B.Tech graduate in Information Technology with hands-on experience building production-oriented AI solutions. My work spans Agentic AI, NLP pipelines, Computer Vision, Retrieval-Augmented Generation (RAG), and other AI related projects.</p>
         <p>My journey is driven by a desire to leverage cutting-edge AI to solve real-world business problems. I thrive at the intersection of research and engineering — turning complex models into scalable, production-ready applications.</p>
         <p>I am currently expanding my expertise in Agentic AI, multi-agent systems, and GenAI infrastructure, always seeking challenging problems that push the boundaries of what's possible.</p>
         <div class="about-chips">
@@ -635,8 +686,8 @@ footer span { color: var(--accent); }
           <span class="chip">Computer Vision</span>
           <span class="chip">NLP</span>
           <span class="chip">Data Science</span>
-          <span class="chip">Voice AI</span>
           <span class="chip">Open to Feedback</span>
+          <span class="chip">Adaptability</span>
         </div>
       </div>
       <div class="info-cards reveal">
@@ -838,7 +889,7 @@ footer span { color: var(--accent); }
         <div class="proj-top">
           <div class="proj-icon" style="background:rgba(88,166,255,0.1);color:var(--accent);">🤖</div>
           <div class="proj-links">
-            <a href="https://github.com/SnehaGhoshNew2003/Email_Classifier" target="_blank" rel="noopener noreferrer" class="proj-link" title="View on GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://github.com/SnehaGhoshNew2003/Git_Analyzer" target="_blank" rel="noopener noreferrer" class="proj-link" title="View on GitHub"><i class="fa-brands fa-github"></i></a>
           </div>
         </div>
         <p class="proj-card-name">Git Analyzer — Multi-Agent System</p>
@@ -852,27 +903,13 @@ footer span { color: var(--accent); }
         <div class="proj-top">
           <div class="proj-icon" style="background:rgba(255,166,87,0.1);color:var(--orange);">✈️</div>
           <div class="proj-links">
-            <a href="https://github.com/SnehaGhoshNew2003" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
+            <a href="https://github.com/SnehaGhoshNew2003/TravelMind_AI" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
           </div>
         </div>
         <p class="proj-card-name">TravelMind AI — LLM Travel Assistant</p>
         <p class="proj-desc">Full-stack AI travel assistant with LangChain, RAG-based QA module, Streamlit frontend with dynamic session management, external API integrations, and real-time streaming responses.</p>
         <div class="proj-tech">
           <span>FastAPI</span><span>LangChain</span><span>RAG</span><span>Vector DB</span><span>Streamlit</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal" data-cat="nlp">
-        <div class="proj-top">
-          <div class="proj-icon" style="background:rgba(188,140,255,0.1);color:var(--purple);">🔐</div>
-          <div class="proj-links">
-            <a href="https://github.com/SnehaGhoshNew2003/Email_Classifier" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
-          </div>
-        </div>
-        <p class="proj-card-name">Email Classifier with PII Detection</p>
-        <p class="proj-desc">NLP-based system that classifies emails into predefined categories and detects & masks Personally Identifiable Information (PII) within email content.</p>
-        <div class="proj-tech">
-          <span>Python</span><span>NLP</span><span>FastAPI</span>
         </div>
       </div>
 
@@ -889,6 +926,48 @@ footer span { color: var(--accent); }
           <span>Xception</span><span>LSTM</span><span>Keras</span><span>Streamlit</span><span>Flickr8k</span>
         </div>
       </div>
+      
+      <div class="project-card reveal" data-cat="nlp">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(255,166,87,0.1);color:var(--orange);">🧘</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Memory_Bot" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Memory Bot</p>
+        <p class="proj-desc">Long-term personal AI assistant that leverages Neo4j, LangChain, and Gemini to maintain persistent memory, store conversations in a graph database, and intelligently retrieve relevant context across sessions for personalized, context-aware interactions.</p>
+        <div class="proj-tech">
+          <span>NLP</span><span>Neo4j</span><span>FastAPI</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="nlp">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(255,166,87,0.1);color:var(--orange);">🧘</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/IntelliData_Analyst" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Intelli Data Analyst</p>
+        <p class="proj-desc">AI-powered autonomous multi-agent data analysis system built with LangChain, FastAPI, Streamlit, Pandas, Matplotlib, and Gemini API that automatically performs CSV-based data cleaning, EDA, anomaly detection, visualizations, and natural-language Q&A through intelligent agent collaboration.</p>
+        <div class="proj-tech">
+          <span>NLP</span><span>Multi-agent</span><span>FastAPI</span>
+        </div>
+      </div>
+      
+      <div class="project-card reveal" data-cat="nlp">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(188,140,255,0.1);color:var(--purple);">🔐</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Email_Classifier" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Email Classifier with PII Detection</p>
+        <p class="proj-desc">NLP-based system that classifies emails into predefined categories and detects & masks Personally Identifiable Information (PII) within email content.</p>
+        <div class="proj-tech">
+          <span>Python</span><span>NLP</span><span>FastAPI</span>
+        </div>
+      </div>
 
       <div class="project-card reveal" data-cat="cv">
         <div class="proj-top">
@@ -903,7 +982,7 @@ footer span { color: var(--accent); }
           <span>Transfer Learning</span><span>OpenCV</span><span>TensorFlow</span>
         </div>
       </div>
-
+      
       <div class="project-card reveal" data-cat="nlp">
         <div class="proj-top">
           <div class="proj-icon" style="background:rgba(88,166,255,0.1);color:var(--accent);">📄</div>
@@ -918,6 +997,20 @@ footer span { color: var(--accent); }
         </div>
       </div>
 
+      <div class="project-card reveal" data-cat="nlp">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(88,166,255,0.1);color:var(--accent);">📄</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Sentiment_Analysis" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Sentiment Analysis </p>
+        <p class="proj-desc">a deep learning–based NLP project built with TensorFlow/Keras, Pandas, and Scikit-learn that preprocesses text data, performs sentiment classification using neural networks.</p>
+        <div class="proj-tech">
+          <span>Gemini AI</span><span>Python</span><span>Streamlit</span>
+        </div>
+      </div>
+      
       <div class="project-card reveal" data-cat="ml">
         <div class="proj-top">
           <div class="proj-icon" style="background:rgba(188,140,255,0.1);color:var(--purple);">🎬</div>
@@ -931,81 +1024,25 @@ footer span { color: var(--accent); }
           <span>Python</span><span>Scikit-Learn</span><span>Pandas</span><span>Streamlit</span>
         </div>
       </div>
-
-      <div class="project-card reveal" data-cat="ml">
-        <div class="proj-top">
-          <div class="proj-icon" style="background:rgba(63,185,80,0.1);color:var(--green);">💻</div>
-          <div class="proj-links">
-            <a href="https://github.com/SnehaGhoshNew2003/Laptop_Price_Predictor" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
-          </div>
-        </div>
-        <p class="proj-card-name">Laptop Price Predictor</p>
-        <p class="proj-desc">ML model estimating laptop prices based on specifications and market trends using regression algorithms and feature engineering.</p>
-        <div class="proj-tech">
-          <span>Scikit-Learn</span><span>Pandas</span><span>Streamlit</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal" data-cat="da">
-        <div class="proj-top">
-          <div class="proj-icon" style="background:rgba(255,166,87,0.1);color:var(--orange);">🏆</div>
-          <div class="proj-links">
-            <a href="https://github.com/SnehaGhoshNew2003/Olympic_Analysis" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
-          </div>
-        </div>
-        <p class="proj-card-name">Olympic Data Analysis</p>
-        <p class="proj-desc">Exploratory analysis of historical Olympic data uncovering trends, performance insights, and medal statistics across countries and sports.</p>
-        <div class="proj-tech">
-          <span>Pandas</span><span>Matplotlib</span><span>Streamlit</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal" data-cat="cv">
-        <div class="proj-top">
-          <div class="proj-icon" style="background:rgba(88,166,255,0.1);color:var(--accent);">😷</div>
-          <div class="proj-links">
-            <a href="https://github.com/SnehaGhoshNew2003/Face_Mask_Recognition" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
-          </div>
-        </div>
-        <p class="proj-card-name">Face Mask Recognition</p>
-        <p class="proj-desc">Deep learning model to detect face masks in real-time using CNN-based architecture trained on masked and unmasked face datasets.</p>
-        <div class="proj-tech">
-          <span>CNN</span><span>Keras</span><span>OpenCV</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal" data-cat="nlp">
-        <div class="proj-top">
-          <div class="proj-icon" style="background:rgba(188,140,255,0.1);color:var(--purple);">💬</div>
-          <div class="proj-links">
-            <a href="https://github.com/SnehaGhoshNew2003/Whatsapp_Chat_Analysis" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
-          </div>
-        </div>
-        <p class="proj-card-name">WhatsApp Chat Analysis</p>
-        <p class="proj-desc">Interactive Streamlit dashboard to extract behavioral insights, activity patterns, and communication metrics from WhatsApp chat exports.</p>
-        <div class="proj-tech">
-          <span>Pandas</span><span>Matplotlib</span><span>Streamlit</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal" data-cat="da">
-        <div class="proj-top">
-          <div class="proj-icon" style="background:rgba(63,185,80,0.1);color:var(--green);">📊</div>
-          <div class="proj-links">
-            <a href="https://github.com/SnehaGhoshNew2003/Hospitality_Domain" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i></a>
-          </div>
-        </div>
-        <p class="proj-card-name">Hospitality Domain Dashboard</p>
-        <p class="proj-desc">Power BI dashboard analyzing hospitality patterns — revenue, occupancy rates, and booking trends across hotel categories for business intelligence.</p>
-        <div class="proj-tech">
-          <span>Power BI</span><span>DAX</span><span>Excel</span>
-        </div>
-      </div>
-
+      
     </div>
   </div>
 </section>
+<!-- More Projects CTA -->
+<div class="more-projects reveal">
+  <a href="https://github.com/SnehaGhoshNew2003"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="github-btn">
+     
+    <i class="fa-brands fa-github"></i>
+    See More Projects on GitHub
+  </a>
 
+  <p class="github-note">
+    Explore additional AI, NLP, Computer Vision & ML projects.
+  </p>
+</div>
 <!-- EDUCATION -->
 <section id="education">
   <div class="section-inner">
