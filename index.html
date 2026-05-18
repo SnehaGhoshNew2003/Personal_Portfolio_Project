@@ -1,595 +1,1754 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sneha Ghosh's Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sneha Ghosh — AI Developer & GenAI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --bg: #090c10;
+  --surface: #0f1318;
+  --surface2: #161b22;
+  --border: #21262d;
+  --accent: #58a6ff;
+  --accent2: #79c0ff;
+  --accent-glow: rgba(88,166,255,0.15);
+  --green: #3fb950;
+  --purple: #bc8cff;
+  --orange: #ffa657;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --dim: #484f58;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
 
-    <!-- Linking -->
-    <link rel="stylesheet" href="style.css">
-    <!----Font awesome cdn  font icon css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* NOISE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* CUSTOM CURSOR */
+* { cursor: none !important; }
+#cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.1s;
+  mix-blend-mode: screen;
+}
+#cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(88,166,255,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transition: transform 0.2s, width 0.3s, height 0.3s, opacity 0.3s;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 0 5%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(9,12,16,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+.nav-logo span { color: var(--accent); }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  background: var(--accent);
+  color: var(--bg) !important;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s !important;
+}
+.nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+.nav-cta::after { display: none !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); transition: 0.3s; }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 64px 5% 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(88,166,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(88,166,255,0.08) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.hero-label::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 0.5rem;
+}
+
+.hero-name .line2 {
+  color: var(--accent);
+  display: block;
+}
+
+.hero-title {
+  font-size: 1.1rem;
+  color: var(--muted);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.hero-desc {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+}
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(88,166,255,0.25); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+  font-family: var(--font-body);
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.stat-item { text-align: left; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text);
+  display: block;
+}
+.stat-label { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+
+/* HERO VISUAL */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.hero-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 320px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.profile-ring {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  position: relative;
+}
+
+.profile-ring::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.profile-initials {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.card-name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+.card-role { font-size: 0.8rem; color: var(--accent); text-align: center; margin-bottom: 1.5rem; }
+
+.card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.tag {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 4px 12px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.floating-badge {
+  position: absolute;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.75rem;
+  color: var(--text);
+  white-space: nowrap;
+  font-weight: 500;
+  animation: float 3s ease-in-out infinite;
+}
+
+.badge-1 { top: -10px; right: -30px; animation-delay: 0s; }
+.badge-2 { bottom: 30px; left: -40px; animation-delay: 1.5s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* SECTION COMMON */
+section { padding: 100px 5%; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.section-label::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--accent);
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 500px;
+  line-height: 1.7;
+}
+
+/* ABOUT */
+#about { background: var(--surface); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+  margin-top: 4rem;
+}
+
+.about-text p {
+  color: var(--muted);
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+  font-size: 0.975rem;
+}
+
+.about-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+.chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  color: var(--text);
+  font-weight: 500;
+  transition: border-color 0.2s, color 0.2s;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip.accent { border-color: rgba(88,166,255,0.4); color: var(--accent); background: rgba(88,166,255,0.05); }
+
+.info-cards { display: flex; flex-direction: column; gap: 1rem; }
+.info-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.info-card:hover { border-color: var(--accent); transform: translateX(4px); }
+.info-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--accent-glow);
+  border: 1px solid rgba(88,166,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.info-content h4 { font-size: 0.8rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem; }
+.info-content p { font-size: 0.9rem; color: var(--text); }
+
+/* EXPERIENCE */
+#experience { background: var(--bg); }
+
+.exp-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+
+.timeline { position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+.timeline-item {
+  padding-left: 60px;
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 12px; top: 6px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 4px rgba(88,166,255,0.15);
+  z-index: 1;
+}
+
+.exp-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.exp-company {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.exp-badge {
+  background: rgba(88,166,255,0.1);
+  border: 1px solid rgba(88,166,255,0.25);
+  color: var(--accent);
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.exp-date {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+.exp-role {
+  font-size: 0.9rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+.exp-projects { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.exp-project {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.exp-project::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.exp-project:hover { border-color: rgba(88,166,255,0.3); transform: translateX(4px); }
+.exp-project:hover::before { opacity: 1; }
+
+.proj-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.proj-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.proj-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.stack-tag {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-family: 'SFMono-Regular', Consolas, monospace;
+}
+
+.proj-bullets { list-style: none; }
+.proj-bullets li {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.7;
+  padding-left: 1.2em;
+  position: relative;
+  margin-bottom: 0.3rem;
+}
+.proj-bullets li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.75em;
+  top: 0.15em;
+}
+
+/* SKILLS */
+#skills { background: var(--surface); }
+
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+
+.skill-group {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.skill-group:hover { border-color: rgba(88,166,255,0.3); transform: translateY(-3px); }
+
+.skill-group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.skill-group-icon {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+}
+
+.icon-blue { background: rgba(88,166,255,0.1); color: var(--accent); }
+.icon-green { background: rgba(63,185,80,0.1); color: var(--green); }
+.icon-purple { background: rgba(188,140,255,0.1); color: var(--purple); }
+.icon-orange { background: rgba(255,166,87,0.1); color: var(--orange); }
+
+.skill-group-name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; }
+
+.skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skill-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  color: var(--text);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.skill-pill:hover { background: var(--surface2); border-color: var(--accent); color: var(--accent); }
+
+/* PROJECTS */
+#projects { background: var(--bg); }
+
+.projects-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.filter-tab {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.filter-tab.active, .filter-tab:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(88,166,255,0.03), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.project-card:hover { border-color: rgba(88,166,255,0.4); transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+.project-card:hover::after { opacity: 1; }
+
+.project-card.featured { border-color: rgba(88,166,255,0.2); grid-column: span 2; }
+.project-card.featured .proj-desc { -webkit-line-clamp: 4; }
+
+.proj-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.proj-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.proj-links { display: flex; gap: 0.5rem; }
+.proj-link {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+.proj-link:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+.proj-card-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.proj-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.proj-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
+.proj-tech span {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-family: 'SFMono-Regular', Consolas, monospace;
+}
+
+/* EDUCATION */
+#education { background: var(--surface); }
+
+.edu-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+
+.edu-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.edu-card:hover { border-color: rgba(88,166,255,0.3); transform: translateY(-4px); }
+
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--purple));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.edu-card:hover::before { opacity: 1; }
+
+.edu-year {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.edu-degree {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.edu-school {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.edu-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(63,185,80,0.08);
+  border: 1px solid rgba(63,185,80,0.2);
+  border-radius: 100px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* CERTS */
+#certifications { background: var(--bg); }
+
+.cert-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; margin-top: 3rem; }
+
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  transition: all 0.2s;
+}
+
+.cert-card:hover { border-color: rgba(88,166,255,0.3); transform: translateX(4px); }
+
+.cert-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(88,166,255,0.08);
+  border: 1px solid rgba(88,166,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.cert-name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+.cert-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+/* CONTACT */
+#contact { background: var(--surface); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+.contact-info-items { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.contact-item i { color: var(--accent); width: 20px; }
+.contact-item a { color: var(--muted); text-decoration: none; }
+.contact-item a:hover { color: var(--accent); }
+
+.social-row { display: flex; gap: 1rem; margin-top: 2rem; }
+.social-btn {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+.social-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); transform: translateY(-3px); }
+
+.contact-form-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-bottom: 0.5rem; letter-spacing: 0.5px; }
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus { border-color: var(--accent); }
+
+.form-group textarea { height: 120px; resize: vertical; }
+
+.form-submit {
+  width: 100%;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 8px;
+  padding: 13px;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+.form-submit:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(88,166,255,0.25); }
+
+/* FOOTER */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 2rem 5%;
+  text-align: center;
+}
+footer p { color: var(--dim); font-size: 0.8rem; }
+footer span { color: var(--accent); }
+
+/* SCROLL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* MOBILE NAV */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu a { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--text); text-decoration: none; }
+.mobile-menu a:hover { color: var(--accent); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+  .hero-actions { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hero-visual { display: none; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .project-card.featured { grid-column: span 1; }
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  section { padding: 60px 5%; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1.2rem; }
+}
+</style>
 </head>
 <body>
 
-    <!-- Home Section -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-  <section id='home'>
-    <div class="hero-header">
-       <div class="wrapper">
-           <header>
-               <div class="logo">
-                   <i class="fa-solid fa-s"></i>
-                   <div class="logo-text">Sneha Ghosh</div>
-               </div>
-               <nav>
-                   <div class="togglebtn">
-                       <span></span>
-                       <span></span>
-                       <span></span>
-                   </div>
-                   <ul class="navlinks">
-                       <li><a href="#home">Home</a></li>
-                       <li><a href="#about">About Me</a></li>
-                       <li><a href="#education">Education</a></li>
-                       <li><a href="#skills">Skills</a></li>
-                       <li><a href="#projects">Projects</a></li>
-                       <li><a href="#contact">Contact Me</a></li>
-                   </ul>
-               </nav>
-           </header>
-           <div class="container">
-                <div class="hero-pic">
-                   <img src="Profile_Picture.png" alt="profile pic">
-                </div>
-                <div class="hero-text">
-                   <h5>Hi I'm <span class="input">Data Scientist</span></h5>
-                   <h1>Sneha</h1>
-                   <p>Welcome to my portfolio! This portfolio showcases my skills, projects, and journey as I explore and innovate in the world of tech. Dive in to learn more about my work, achievements, and the exciting projects I have undertaken.</p>
-                </div>
-       </div>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero" onclick="closeMobile()">Home</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#projects" onclick="closeMobile()">Projects</a>
+  <a href="#education" onclick="closeMobile()">Education</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">SG<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="Sneha_Ghosh_CV.pdf" class="nav-cta"><i class="fa-solid fa-arrow-down"></i> Resume</a>
+  <button class="hamburger" id="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-label">Available for opportunities</div>
+      <h1 class="hero-name">
+        Sneha<span class="line2">Ghosh</span>
+      </h1>
+      <p class="hero-title">AI Developer · GenAI Engineer · ML Practitioner</p>
+      <p class="hero-desc">Building production-grade intelligent systems across NLP, Computer Vision, RAG, and Voice AI. Transforming real-world business requirements into scalable AI applications.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary"><i class="fa-solid fa-rocket"></i> View Projects</a>
+        <a href="#contact" class="btn-outline"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">28+</span>
+          <span class="stat-label">Projects Built</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Months at Darpin</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">8.25</span>
+          <span class="stat-label">CGPA</span>
+        </div>
+      </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
-    <script>
-       var togglebtn=document.querySelector(".togglebtn");
-       var nav=document.querySelector(".navlinks");
-       var links=document.querySelector(".navlinks li");
-
-       togglebtn.addEventListener("click", function(){
-           this.classList.toggle("click");
-           nav.classList.toggle("open");
-       })
-
-       var typed = new Typed(".input", {
-    strings: ["Data Scientist", "Machine Learning Enthusiast", "AI Developer"],
-    typeSpeed: 70,
-    backSpeed: 55,
-    loop: true
- });
-    </script>
-  </section>
-
-     <div class="others">
-
-
-       <!-- About Section -->
-
-       <section id="about">
-           <div class="about-wrapper">
-               <div class="about-left">
-                   <div class="about-left-content">
-                       <h2>Sneha Ghosh</h2>
-                       <h3>B.Tech Graduate & Tech Enthusiast</h3>
-                   </div>
-               </div>
-
-               <div class="about-right">
-                   <h1>About me<span>!</span></h1>
-                   <h2>Here's who I am & what I do</h2>
-                   <div class="about-para">
-                       <p>Hello! I'm a B.Tech graduate with a passion for technology and a keen interest in machine learning, deep learning, and artificial intelligence. I am currently expanding my expertise in AI and ML.</p>
-                       <p>My journey has been driven by a desire to leverage technology to solve real-world problems. I enjoy working on innovative projects and am constantly seeking new challenges to enhance my skills and knowledge.</p>
-                   </div>
-
-                   <h4>Profile:</h4>
-                   <ul class="profile-list">
-                       <li>Data Science & Analytics</li>
-                       <li>Languages: English, Hindi, Bengali</li>
-                       <li>Interests: Travelling, Reading Novels</li>
-                       <li>Soft Skills : Adaptability, Growth Mindset, Open to feedbacks, Communication Skills</li>
-                       <li>Skills: Python, SQL, Statistics, Probability, Linear Algebra, Calculus</li>
-                       <li>Technical Tools:  Power BI, Excel, Numpy, Pandas, Matplotlib, Tensorflow, Keras, Langchain, LangGraph, FastAPI, Docker, Vector Database, LLM, RAG, CrewAI, MCP, n8n</li>
-                   </ul>
-
-                   <div class="about-btns">
-                  <a href="Sneha_Ghosh_CV.pdf"><button type="button" class="btn btn-primary" >Resume</button></a>
-                   </div>
-               </div>
-           </div>
-       </section>
-
-
-<!-- Education Section -->
-
-<section id="education">
-    <h2>Education</h2>
-    <div class="education-timeline">
-        <div class="education-item">
-            <div class="education-content">
-                <h3>Class 10</h3>
-                <span class="date">2018 - 2019</span>
-                <p>Kendriya Vidyalaya Ranaghat</p>
-                <p>Stream: Science</p>
-                <p>Percentage: 85.8%</p>
-            </div>
+    <div class="hero-visual">
+      <div style="position:relative;">
+        <div class="hero-card">
+          <div class="profile-ring">
+            <span class="profile-initials">SG</span>
+          </div>
+          <p class="card-name">Sneha Ghosh</p>
+          <p class="card-role">AI Developer · GenAI Engineer</p>
+          <div class="card-tags">
+            <span class="tag">🧠 LangChain</span>
+            <span class="tag">🔥 FastAPI</span>
+            <span class="tag">📊 Power BI</span>
+            <span class="tag">🤖 CrewAI</span>
+            <span class="tag">🐍 Python</span>
+            <span class="tag">🔮 RAG</span>
+          </div>
         </div>
-
-        <div class="education-item">
-            <div class="education-content">
-                <h3>Class 12</h3>
-                <span class="date">2020 - 2021</span>
-                <p>Kendriya Vidyalaya Ranaghat</p>
-                <p>Stream: Science</p>
-                <p>Percentage: 87.4%</p>
-            </div>
-        </div>
-
-        <div class="education-item">
-            <div class="education-content">
-                <h3>Bachelor of Technology</h3>
-                <span class="date">2021 - 2025</span>
-                <p>College of Engineering and Management, Kolaghat</p>
-                <p>Specialization: Information Technology</p>
-                <p>CGPA : 8.25</p>
-            </div>
-        </div>
+        <div class="floating-badge badge-1">📍 Kolkata, India</div>
+        <div class="floating-badge badge-2">✅ B.Tech IT · CGPA 8.25</div>
+      </div>
     </div>
+  </div>
 </section>
 
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <span class="section-label reveal">Who I Am</span>
+    <h2 class="section-heading reveal">Passionate about building<br>intelligent systems</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a B.Tech graduate in Information Technology with hands-on experience building production-oriented AI solutions. My work spans NLP pipelines, Computer Vision, Retrieval-Augmented Generation (RAG), Voice AI, and document intelligence systems.</p>
+        <p>My journey is driven by a desire to leverage cutting-edge AI to solve real-world business problems. I thrive at the intersection of research and engineering — turning complex models into scalable, production-ready applications.</p>
+        <p>I am currently expanding my expertise in Agentic AI, multi-agent systems, and GenAI infrastructure, always seeking challenging problems that push the boundaries of what's possible.</p>
+        <div class="about-chips">
+          <span class="chip accent">Agentic AI</span>
+          <span class="chip accent">LLMs & RAG</span>
+          <span class="chip">Deep Learning</span>
+          <span class="chip">Computer Vision</span>
+          <span class="chip">NLP</span>
+          <span class="chip">Data Science</span>
+          <span class="chip">Voice AI</span>
+          <span class="chip">Open to Feedback</span>
+        </div>
+      </div>
+      <div class="info-cards reveal">
+        <div class="info-card">
+          <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="info-content">
+            <h4>Location</h4>
+            <p>Kolkata, West Bengal, India</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="info-content">
+            <h4>Email</h4>
+            <p>snehanew2003@gmail.com</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="info-content">
+            <h4>Phone</h4>
+            <p>+91 9832178973</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fa-solid fa-language"></i></div>
+          <div class="info-content">
+            <h4>Languages</h4>
+            <p>English · Hindi · Bengali</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fa-solid fa-heart"></i></div>
+          <div class="info-content">
+            <h4>Interests</h4>
+            <p>Travelling · Reading Novels · AI Research</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- Skills Section -->
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="exp-header">
+      <div>
+        <span class="section-label reveal">Work Experience</span>
+        <h2 class="section-heading reveal">Where I've applied<br>my skills</h2>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="exp-meta">
+          <span class="exp-company">Darpin Dynamics</span>
+          <span class="exp-badge">AI/ML Internship</span>
+          <span class="exp-date">Dec 2025 – Apr 2026</span>
+        </div>
+        <p class="exp-role">AI/ML Intern · Building production AI pipelines</p>
+        <div class="exp-projects">
 
+          <div class="exp-project">
+            <div class="proj-title-row">
+              <span class="proj-name">🎙️ AI Voice Calling Automation System</span>
+              <div class="proj-stack">
+                <span class="stack-tag">Voice AI</span>
+                <span class="stack-tag">PostgreSQL</span>
+                <span class="stack-tag">Python</span>
+              </div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Built an end-to-end voice AI pipeline for automated 24/7 customer call handling, enabling real-time conversational responses without human intervention.</li>
+              <li>Integrated PostgreSQL as the backend data store for persisting call logs, customer records, and session states.</li>
+              <li>Developed a companion analytics dashboard monitoring sentiment trends, multilingual transcripts, and customer interaction quality for business intelligence.</li>
+            </ul>
+          </div>
+
+          <div class="exp-project">
+            <div class="proj-title-row">
+              <span class="proj-name">🌐 Multilingual Feedback AI System</span>
+              <div class="proj-stack">
+                <span class="stack-tag">NLP</span>
+                <span class="stack-tag">Speech Models</span>
+                <span class="stack-tag">PostgreSQL</span>
+              </div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Built a feedback ingestion system accepting customer input in any Indian language, performing automatic translation and transcription across 10+ regional languages using speech and NLP models.</li>
+              <li>Stored structured feedback with sentiment tagging, enabling downstream analysis across regional language inputs.</li>
+              <li>Designed an automated feedback categorization system grouping user inputs into actionable categories, reducing manual triage effort for business teams.</li>
+            </ul>
+          </div>
+
+          <div class="exp-project">
+            <div class="proj-title-row">
+              <span class="proj-name">📧 AI Memory Assistant for Gmail & Calendar</span>
+              <div class="proj-stack">
+                <span class="stack-tag">RAG</span>
+                <span class="stack-tag">LangChain</span>
+                <span class="stack-tag">PostgreSQL</span>
+                <span class="stack-tag">OAuth</span>
+              </div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Designed a personal memory module syncing Gmail and Google Calendar via OAuth, storing indexed content through a local persistence layer.</li>
+              <li>Implemented a RAG pipeline allowing users to query their email and calendar history in natural language.</li>
+              <li>Enabled AI-generated SQL queries from natural language prompts for structured retrieval from synced data stored in PostgreSQL.</li>
+            </ul>
+          </div>
+
+          <div class="exp-project">
+            <div class="proj-title-row">
+              <span class="proj-name">🔬 Forensic Face Recognition & Restoration System</span>
+              <div class="proj-stack">
+                <span class="stack-tag">ResNet</span>
+                <span class="stack-tag">GFPGAN</span>
+                <span class="stack-tag">OpenCV</span>
+              </div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Developed a forensic face recognition pipeline using ResNet for deep feature extraction and cosine similarity scoring, designed to identify individuals from degraded or post-mortem imagery.</li>
+              <li>Assisted in building a diffusion-model-based face restoration module using GFPGAN to reconstruct damaged facial images as a high-quality pre-step to recognition.</li>
+            </ul>
+          </div>
+
+          <div class="exp-project">
+            <div class="proj-title-row">
+              <span class="proj-name">🏥 Medical Bill PDF-to-JSON Extraction System</span>
+              <div class="proj-stack">
+                <span class="stack-tag">PaddleOCR</span>
+                <span class="stack-tag">FastAPI</span>
+                <span class="stack-tag">Docker</span>
+                <span class="stack-tag">Ollama</span>
+              </div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Built a multi-stage intelligent pipeline to extract structured JSON from scanned and digital hospital bill PDFs using PaddleOCR and pdfplumber, achieving high accuracy on complex multi-page formats.</li>
+              <li>Integrated vision-language models via Ollama (LLaVA, Qwen2.5) with a custom legibility scoring module to auto-route between OCR and direct extraction paths.</li>
+              <li>Exposed the pipeline as a FastAPI REST endpoint accepting PDF uploads and returning fully validated JSON; included deskewing, denoising, and category-aware batching.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
 <section id="skills">
-    <h2 class="section-title">Skills</h2>
-    <div class="circular_progress">
-        <div class="responsive-container-block big-container">
-            <div class="responsive-container-block container">
-                <p class="text-blk section-subheadtext">An overview of my key skills and their proficiency levels.</p>
-                <div class="responsive-container-block">
-
-                    <!-- Skill 1 -->
-                    <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12">
-                        <div class="card">
-                            <div class="circlechart" data-percentage="85"></div>
-                            <p class="text-blk card-head">Python</p>
-                            <p class="text-blk card-text">Proficient in Python for data science and machine learning.</p>
-                        </div>
-                    </div>
-                    <!-- Skill 2 -->
-                    <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12">
-                        <div class="card">
-                            <div class="circlechart" data-percentage="90"></div>
-                            <p class="text-blk card-head">Data Visualization</p>
-                            <p class="text-blk card-text">Skilled in creating insightful data visualizations.</p>
-                        </div>
-                    </div>
-                    <!-- Skill 3 -->
-                    <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12">
-                        <div class="card">
-                            <div class="circlechart" data-percentage="85"></div>
-                            <p class="text-blk card-head">Statistical Analysis</p>
-                            <p class="text-blk card-text">Experienced in statistical analysis and interpretation.</p>
-                        </div>
-                    </div>
-                    <!-- Skill 4 -->
-                    <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12">
-                        <div class="card">
-                            <div class="circlechart" data-percentage="80"></div>
-                            <p class="text-blk card-head">Machine Learning</p>
-                            <p class="text-blk card-text">Knowledgeable in machine learning algorithms and techniques.</p>
-                        </div>
-                    </div>
-                    <!-- Skill 5 -->
-                    <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12">
-                        <div class="card">
-                            <div class="circlechart" data-percentage="95"></div>
-                            <p class="text-blk card-head">SQL</p>
-                            <p class="text-blk card-text">Expert in SQL for database management and data analysis.</p>
-                        </div>
-                    </div>
-                    <!-- Skill 6 -->
-                    <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12">
-                        <div class="card">
-                            <div class="circlechart" data-percentage="95"></div>
-                            <p class="text-blk card-head">Deep Learning</p>
-                            <p class="text-blk card-text">Knowledge in neural networks. </p>
-                        </div>
-                    </div>
-                    <!-- Skill 7 -->
-                    <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12">
-                        <div class="card">
-                            <div class="circlechart" data-percentage="95"></div>
-                            <p class="text-blk card-head">Power BI</p>
-                            <p class="text-blk card-text">Experince in data wrangling, cleaning and analysis.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="section-inner">
+    <span class="section-label reveal">Technical Expertise</span>
+    <h2 class="section-heading reveal">Skills & Technologies</h2>
+    <p class="section-sub reveal">A comprehensive toolkit spanning the full AI development lifecycle.</p>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-header">
+          <div class="skill-group-icon icon-blue"><i class="fa-solid fa-code"></i></div>
+          <span class="skill-group-name">Core Programming</span>
         </div>
-    </div>
-</section>
-
-
-<!-- Project Section-->
-
-<section id="projects" class="section-padding">
-  <h2 class="section-title">Projects</h2>
-  <div class="container">
-    <div class="row">
-        <!-- Project 1 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Email Classifier</h5>
-            <p class="card-text">The Movies Recommender System is a NLP based project that classifies emails into predefined categories and detects and masks Personally Identifiable Information (PII) within email content. </p>
-            <a href="https://github.com/SnehaGhoshNew2003/Email_Classifier" class="btn btn-primary">View Project</a>
-          </div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">Statistics</span>
+          <span class="skill-pill">Probability</span>
+          <span class="skill-pill">Linear Algebra</span>
+          <span class="skill-pill">Calculus</span>
+          <span class="skill-pill">Hypothesis Testing</span>
         </div>
       </div>
-        <!-- Project 2 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Spell Checker</h5>
-            <p class="card-text">This obgoing project implements a spell checker that preprocesses text, removes stopwords, and applies deep learning-based tokenization using the BERT tokenizer.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Spell_Checker" class="btn btn-primary">View Project</a>
-          </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-header">
+          <div class="skill-group-icon icon-purple"><i class="fa-solid fa-brain"></i></div>
+          <span class="skill-group-name">AI / ML & Deep Learning</span>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">TensorFlow</span>
+          <span class="skill-pill">Keras</span>
+          <span class="skill-pill">PyTorch</span>
+          <span class="skill-pill">Scikit-Learn</span>
+          <span class="skill-pill">NLP</span>
+          <span class="skill-pill">Computer Vision</span>
+          <span class="skill-pill">Pandas</span>
+          <span class="skill-pill">NumPy</span>
+          <span class="skill-pill">Matplotlib</span>
+          <span class="skill-pill">Seaborn</span>
+          <span class="skill-pill">Scipy</span>
         </div>
       </div>
-        <!-- Project 3 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Youtube Transcriber</h5>
-            <p class="card-text">This project extracts YouTube video transcripts and generates AI-powered summaries using Google Gemini AI. It provides key insights from videos in a concise format.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/YouTube_Transcriber" class="btn btn-primary">View Project</a>
-          </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-header">
+          <div class="skill-group-icon icon-green"><i class="fa-solid fa-robot"></i></div>
+          <span class="skill-group-name">Backend & AI Systems</span>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">FastAPI</span>
+          <span class="skill-pill">LangChain</span>
+          <span class="skill-pill">LangGraph</span>
+          <span class="skill-pill">RAG</span>
+          <span class="skill-pill">Vector Databases</span>
+          <span class="skill-pill">PostgreSQL</span>
+          <span class="skill-pill">Docker</span>
+          <span class="skill-pill">CrewAI</span>
+          <span class="skill-pill">MCP</span>
+          <span class="skill-pill">n8n</span>
         </div>
       </div>
-        <!-- Project 4 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Image Captioning</h5>
-            <p class="card-text">This project implements an Image Captioning model using deep learning techniques. The model processes images and generates descriptive captions by leveraging a CNN for feature extraction and an RNN for sequence generation.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Image_Captioning" class="btn btn-primary">View Project</a>
-          </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-header">
+          <div class="skill-group-icon icon-orange"><i class="fa-solid fa-chart-bar"></i></div>
+          <span class="skill-group-name">Tools & Platforms</span>
         </div>
-      </div>
-        <!-- Project 5 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">ATS System</h5>
-            <p class="card-text">This project is an AI-powered Applicant Tracking System (ATS) Resume Analyzer that helps job seekers evaluate their resumes against job descriptions using Google Gemini AI. It provides insights into resume strengths, improvement areas, and an ATS match percentage.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/ATS_System" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-        <!-- Project 6 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Identifying Shopping Trends</h5>
-            <p class="card-text">This project analyzes shopping behavior and trends using data visualization and statistical techniques. It helps in understanding customer preferences and market patterns.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Identifying_Shopping_Trends" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-      <!-- Project 7 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Movies Recommender System</h5>
-            <p class="card-text">The Movies Recommender System is a machine learning project that suggests personalized movie recommendations based on user preferences and viewing history.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Movie_Recommender_System" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-      <!-- Project 8 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">WhatsApp Chat Analysis</h5>
-            <p class="card-text">Analyzed chat data using Streamlit to extract insights. Built with Pandas and Matplotlib.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Whatsapp_Chat_Analysis" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-      <!-- Project 9 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Laptop Price Predictor</h5>
-            <p class="card-text">The Laptop Price Predictor is a machine learning model that estimates the price of a laptop based on its specifications, features, and market trends.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Laptop_Price_Predictor" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-      <!-- Project 10 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Olympic Analysis</h5>
-            <p class="card-text">The Olympic Analysis project explores historical Olympic data to uncover trends, performance insights, and medal statistics across different countries and sports.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Olympic_Analysis" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-      <!-- Project 11 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Bangaluru House Price Prediction</h5>
-            <p class="card-text">Used Scikit-learn to predict house prices with regression algorithms.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Bengaluru_House_Price_Prediction" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-      <!-- Project 12 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">SMS Spam Classifier</h5>
-            <p class="card-text">The SMS Spam Classifier is a machine learning model that identifies and filters out spam messages by analyzing text patterns and keywords.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/SMS-Spam-Classifier" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-      <!-- Project 13 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Car Price Predictor</h5>
-            <p class="card-text">The Dog vs Cat Classifier is a deep learning model that accurately distinguishes between images of dogs and cats using convolutional neural networks (CNN).</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Car_Price_Predictor" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-      <!-- Project 14 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Dog VS Cat Classifier</h5>
-            <p class="card-text">The Car Price Predictor is a machine learning model that predicts the price of a car based on its features such as brand, model, mileage, and year of manufacture.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Dog_Cat_Classifier" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-      <!-- Project 15 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Portfolio Website</h5>
-            <p class="card-text">Built a personal portfolio using HTML, CSS, and JS. Designed to showcase my skills and projects.</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Personal_Portfolio_Project" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-     <!-- Project 16 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Posture Detection</h5>
-            <p class="card-text">Built a deep learning project to detect postures</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Posture_Detection" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-   <!-- Project 17 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Object Recognition</h5>
-            <p class="card-text">Built a project using CIFAR dataset to recognise objects</p>
-            <a href="https://github.com/SnehaGhoshNew2003/Object_Recognition" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-   <!-- Project 18 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Face Mask Recognition</h5>
-            <p class="card-text">Built a deep learning project to detect face mask </p>
-            <a href="https://github.com/SnehaGhoshNew2003/Face_Mask_Recognition" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-    <!-- Project 19 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">MNIST Classification</h5>
-            <p class="card-text">Built a project to detect handwritten digits using MNIST dataset </p>
-            <a href="https://github.com/SnehaGhoshNew2003/MNIST_Classification" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-        <!-- Project 20 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Breast Cancer </h5>
-            <p class="card-text">Project to determine cancer using neural networks </p>
-            <a href="https://github.com/SnehaGhoshNew2003/Breast_Cancer" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-        <!-- Project 21 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Customer Churn Prediction</h5>
-            <p class="card-text">Built a deep learning project to analyse the customer churn. </p>
-            <a href="https://github.com/SnehaGhoshNew2003/Customer_churn_prediction" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-        <!-- Project 22 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Graduate Admission Prediction</h5>
-            <p class="card-text">Built a project to predict admission </p>
-            <a href="https://github.com/SnehaGhoshNew2003/Graduate_Admission_Prediction" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-        <!-- Project 23 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Sentiment Analysis</h5>
-            <p class="card-text">Built a project analyse the sentiment using comments </p>
-            <a href="https://github.com/SnehaGhoshNew2003/Sentiment_Analysis" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-        <!-- Project 24 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Plant Disease Prediction</h5>
-            <p class="card-text">Project for detecting plant disease condition </p>
-            <a href="https://github.com/SnehaGhoshNew2003/Plant_disease_Prediction" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-        <!-- Project 25 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Netflix Titles</h5>
-            <p class="card-text">Project for showcasing EDA on netflix dataset </p>
-            <a href="https://github.com/SnehaGhoshNew2003/netflix_titles" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-        <!-- Project 26 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Yoga Posture detection and prediction </h5>
-            <p class="card-text">Built a project of trasfer learning to detect and predict various yoga postures in real time </p>
-            <a href="https://github.com/SnehaGhoshNew2003/Yoga_Pose_Detection_And_Prediction" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-        <!-- Project 27 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Hospitality Domain </h5>
-            <p class="card-text">Built a project using power BI to analyse hospitality Patterns  </p>
-            <a href="https://github.com/SnehaGhoshNew2003/Hospitality_Domain" class="btn btn-primary">View Project</a>
-          </div>
-        </div>
-      </div>
-        <!-- Project 28 -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Sales Analysis</h5>
-            <p class="card-text">Built a project using power BI to analyse Sales insights </p>
-            <a href="https://github.com/SnehaGhoshNew2003/Sales_Analysis" class="btn btn-primary">View Project</a>
-          </div>
+        <div class="skill-pills">
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">Excel</span>
+          <span class="skill-pill">Streamlit</span>
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">ChromaDB</span>
+          <span class="skill-pill">Ollama</span>
+          <span class="skill-pill">PaddleOCR</span>
+          <span class="skill-pill">OpenCV</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- Contact Section -->
-
-   <section id="contact">
-     <div class="contact-us-section">
-<div class="container">
-  <div class="contact-form">
-    <h2 class="contact-heading">Contact Me</h2>
-    <p class="contact-subheading">
-      Have any questions or feedback? Reach out to me!
-    </p>
-  </div>
-  <div class="contact-info">
-    <h2 class="contact-heading">Get in Touch</h2>
-    <p class="contact-subheading">
-      I'd love to hear from you. Here’s how you can reach me.
-    </p>
-    <div class="contact-details">
-      <div class="contact-item">
-        <img class="contact-icon" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET21.jpg" alt="Phone">
-        <p class="contact-text">+91 9832178973</p>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="projects-header">
+      <div>
+        <span class="section-label reveal">Portfolio</span>
+        <h2 class="section-heading reveal">Selected Projects</h2>
       </div>
-      <div class="contact-item">
-        <img class="contact-icon" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET22.jpg" alt="Email">
-        <p class="contact-text">snehanew2003@gmail.com</p>
-      </div>
-      <div class="contact-item">
-        <img class="contact-icon" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET23.jpg" alt="Address">
-        <p class="contact-text">West Bengal,India</p>
+      <div class="filter-tabs reveal">
+        <button class="filter-tab active" onclick="filterProjects('all', this)">All</button>
+        <button class="filter-tab" onclick="filterProjects('nlp', this)">NLP</button>
+        <button class="filter-tab" onclick="filterProjects('cv', this)">Computer Vision</button>
+        <button class="filter-tab" onclick="filterProjects('ml', this)">ML</button>
+        <button class="filter-tab" onclick="filterProjects('da', this)">Data Analysis</button>
       </div>
     </div>
-    <div class="social-links">
-      <div class="social-icon">
-        <a href="https://www.linkedin.com/in/sneha-ghosh-a5815521b/"><i class="fa-brands fa-linkedin"></i></a>
-      </div>
-      <div class="social-icon">
-        <a href="https://github.com/SnehaGhoshNew2003"><i class="fa-brands fa-github"></i></a>
-      </div>
-      <div class="social-icon">
-         <a href="https://www.facebook.com/profile.php?id=100069699750915&sfnsn=wiwspwa&mibextid=RUbZ1f"><i class="fa-brands fa-facebook"></i></a>
-      </div>
-      <div class="social-icon">
-         <a href="https://www.instagram.com/sneha_cbp?igsh=MXZudzh6cW9pamM4Zg=="><i class="fa-brands fa-instagram"></i></a>
-      </div>
-         </div>
-  </div>
-</div>
-</div>
+    <div class="projects-grid" id="projectsGrid">
 
-   </section>
-     </div>
-
-
-    <!-- Footer Section -->
-
-     <footer>
-    <div class="footer-container">
-        <div class="footer-links">
-            <a href="#home">Home</a>
-            <a href="#about">About Me</a>
-            <a href="#education">Education</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+      <div class="project-card featured reveal" data-cat="nlp">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(88,166,255,0.1);color:var(--accent);">🤖</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Email_Classifier" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
         </div>
-        <p>&copy; @ 2025 Sneha Ghosh. All rights reserved.</p>
+        <p class="proj-card-name">Git Analyzer — Multi-Agent System</p>
+        <p class="proj-desc">Built a 3-agent CrewAI workflow (Retriever → Reasoner → Responder) with AST-aware RAG ingestion, 6-category intent classification, and FastAPI endpoints with PostgreSQL session persistence. Routes natural language queries across architecture, history, file explanation, and dependency questions.</p>
+        <div class="proj-tech">
+          <span>Python</span><span>FastAPI</span><span>CrewAI</span><span>ChromaDB</span><span>PostgreSQL</span><span>GitPython</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="nlp">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(255,166,87,0.1);color:var(--orange);">✈️</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">TravelMind AI — LLM Travel Assistant</p>
+        <p class="proj-desc">Full-stack AI travel assistant with LangChain, RAG-based QA module, Streamlit frontend with dynamic session management, external API integrations, and real-time streaming responses.</p>
+        <div class="proj-tech">
+          <span>FastAPI</span><span>LangChain</span><span>RAG</span><span>Vector DB</span><span>Streamlit</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="nlp">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(188,140,255,0.1);color:var(--purple);">🔐</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Email_Classifier" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Email Classifier with PII Detection</p>
+        <p class="proj-desc">NLP-based system that classifies emails into predefined categories and detects & masks Personally Identifiable Information (PII) within email content.</p>
+        <div class="proj-tech">
+          <span>Python</span><span>NLP</span><span>FastAPI</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="cv">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(63,185,80,0.1);color:var(--green);">🖼️</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Image_Captioning" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Image Captioning System</p>
+        <p class="proj-desc">Encoder-decoder architecture using Xception CNN + LSTM with beam search decoding (width=3). Deployed via Streamlit with real-time inference on Flickr8k.</p>
+        <div class="proj-tech">
+          <span>Xception</span><span>LSTM</span><span>Keras</span><span>Streamlit</span><span>Flickr8k</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="cv">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(255,166,87,0.1);color:var(--orange);">🧘</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Yoga_Pose_Detection_And_Prediction" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Yoga Posture Detection & Prediction</p>
+        <p class="proj-desc">Transfer learning-based model to detect and predict various yoga postures in real-time using deep learning and pose estimation techniques.</p>
+        <div class="proj-tech">
+          <span>Transfer Learning</span><span>OpenCV</span><span>TensorFlow</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="nlp">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(88,166,255,0.1);color:var(--accent);">📄</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/ATS_System" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">ATS Resume Analyzer</p>
+        <p class="proj-desc">AI-powered ATS analyzer using Google Gemini AI to evaluate resumes against job descriptions, providing match percentage and improvement suggestions.</p>
+        <div class="proj-tech">
+          <span>Gemini AI</span><span>Python</span><span>Streamlit</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="ml">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(188,140,255,0.1);color:var(--purple);">🎬</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Movie_Recommender_System" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Movies Recommender System</p>
+        <p class="proj-desc">ML-based collaborative filtering model that suggests personalized movie recommendations based on user preferences and viewing history.</p>
+        <div class="proj-tech">
+          <span>Python</span><span>Scikit-Learn</span><span>Pandas</span><span>Streamlit</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="ml">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(63,185,80,0.1);color:var(--green);">💻</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Laptop_Price_Predictor" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Laptop Price Predictor</p>
+        <p class="proj-desc">ML model estimating laptop prices based on specifications and market trends using regression algorithms and feature engineering.</p>
+        <div class="proj-tech">
+          <span>Scikit-Learn</span><span>Pandas</span><span>Streamlit</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="da">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(255,166,87,0.1);color:var(--orange);">🏆</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Olympic_Analysis" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Olympic Data Analysis</p>
+        <p class="proj-desc">Exploratory analysis of historical Olympic data uncovering trends, performance insights, and medal statistics across countries and sports.</p>
+        <div class="proj-tech">
+          <span>Pandas</span><span>Matplotlib</span><span>Streamlit</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="cv">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(88,166,255,0.1);color:var(--accent);">😷</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Face_Mask_Recognition" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Face Mask Recognition</p>
+        <p class="proj-desc">Deep learning model to detect face masks in real-time using CNN-based architecture trained on masked and unmasked face datasets.</p>
+        <div class="proj-tech">
+          <span>CNN</span><span>Keras</span><span>OpenCV</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="nlp">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(188,140,255,0.1);color:var(--purple);">💬</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Whatsapp_Chat_Analysis" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">WhatsApp Chat Analysis</p>
+        <p class="proj-desc">Interactive Streamlit dashboard to extract behavioral insights, activity patterns, and communication metrics from WhatsApp chat exports.</p>
+        <div class="proj-tech">
+          <span>Pandas</span><span>Matplotlib</span><span>Streamlit</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="da">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:rgba(63,185,80,0.1);color:var(--green);">📊</div>
+          <div class="proj-links">
+            <a href="https://github.com/SnehaGhoshNew2003/Hospitality_Domain" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <p class="proj-card-name">Hospitality Domain Dashboard</p>
+        <p class="proj-desc">Power BI dashboard analyzing hospitality patterns — revenue, occupancy rates, and booking trends across hotel categories for business intelligence.</p>
+        <div class="proj-tech">
+          <span>Power BI</span><span>DAX</span><span>Excel</span>
+        </div>
+      </div>
+
     </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <span class="section-label reveal">Academic Background</span>
+    <h2 class="section-heading reveal">Education</h2>
+    <div class="edu-cards">
+      <div class="edu-card reveal">
+        <div class="edu-year">2021 – 2025</div>
+        <h3 class="edu-degree">Bachelor of Technology<br>in Information Technology</h3>
+        <p class="edu-school">College of Engineering and Management, Kolaghat</p>
+        <span class="edu-score"><i class="fa-solid fa-star"></i> CGPA: 8.25</span>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2020 – 2021</div>
+        <h3 class="edu-degree">Class XII<br>Science Stream</h3>
+        <p class="edu-school">Kendriya Vidyalaya Ranaghat</p>
+        <span class="edu-score"><i class="fa-solid fa-star"></i> 87.4%</span>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2018 – 2019</div>
+        <h3 class="edu-degree">Class X<br>Science Stream</h3>
+        <p class="edu-school">Kendriya Vidyalaya Ranaghat</p>
+        <span class="edu-score"><i class="fa-solid fa-star"></i> 85.8%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <span class="section-label reveal">Learning & Growth</span>
+    <h2 class="section-heading reveal">Certifications</h2>
+    <div class="cert-cards">
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+        <div>
+          <p class="cert-name">The Data Science Course — Complete Bootcamp</p>
+          <p class="cert-desc">Udemy (2025) · Data preprocessing, feature engineering, ML (regression, classification, clustering via Scikit-Learn), deep learning with TensorFlow/Keras, and statistical foundations on real-world datasets.</p>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div>
+          <p class="cert-name">IIT Kharagpur AI4ICPS Certificate Programme</p>
+          <p class="cert-desc">TCS iON · Industry AI workflows, key algorithms (SVM, KNN, Naïve Bayes), transformers, computer vision, hyperparameter tuning, and ethical AI deployment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="section-label">Let's Connect</span>
+        <h2 class="section-heading">Open to new<br>opportunities</h2>
+        <p style="color:var(--muted);margin-top:1rem;line-height:1.8;font-size:0.95rem;">I'm actively looking for AI/ML engineering roles where I can work on challenging, impactful problems. Whether it's a full-time position, freelance project, or just to chat about AI — feel free to reach out.</p>
+        <div class="contact-info-items">
+          <div class="contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:snehanew2003@gmail.com">snehanew2003@gmail.com</a></div>
+          <div class="contact-item"><i class="fa-solid fa-phone"></i><span>+91 9832178973</span></div>
+          <div class="contact-item"><i class="fa-solid fa-location-dot"></i><span>Kolkata, West Bengal, India</span></div>
+        </div>
+        <div class="social-row">
+          <a href="https://www.linkedin.com/in/sneha-ghosh-a5815521b/" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://github.com/SnehaGhoshNew2003" target="_blank" class="social-btn"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.instagram.com/sneha_cbp" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=100069699750915" target="_blank" class="social-btn"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+      </div>
+      <div class="contact-form-card reveal">
+        <div class="form-row">
+          <div class="form-group">
+            <label>FIRST NAME</label>
+            <input type="text" placeholder="John">
+          </div>
+          <div class="form-group">
+            <label>LAST NAME</label>
+            <input type="text" placeholder="Doe">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>EMAIL ADDRESS</label>
+          <input type="email" placeholder="john@company.com">
+        </div>
+        <div class="form-group">
+          <label>SUBJECT</label>
+          <input type="text" placeholder="Job opportunity / Collaboration / ...">
+        </div>
+        <div class="form-group">
+          <label>MESSAGE</label>
+          <textarea placeholder="Tell me about the role or project..."></textarea>
+        </div>
+        <button class="form-submit">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & built by <span>Sneha Ghosh</span> · © 2025 All rights reserved</p>
 </footer>
 
+<script>
+// CUSTOM CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
 
-<!-- Javascript links -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"></script>
-<script src="script.js" charset="utf-8"></script>
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx - 5 + 'px';
+  cursor.style.top = my - 5 + 'px';
+});
 
+function animateRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx - 18 + 'px';
+  ring.style.top = ry - 18 + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
 
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.width = '50px'; ring.style.height = '50px';
+    ring.style.opacity = '0.5';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.width = '36px'; ring.style.height = '36px';
+    ring.style.opacity = '1';
+  });
+});
+
+// SCROLL REVEAL
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// MOBILE NAV
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// PROJECT FILTER
+function filterProjects(cat, btn) {
+  document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// NAV ACTIVE STATE
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY + 100;
+  sections.forEach(s => {
+    const link = document.querySelector(`.nav-links a[href="#${s.id}"]`);
+    if (!link) return;
+    if (y >= s.offsetTop && y < s.offsetTop + s.offsetHeight) {
+      document.querySelectorAll('.nav-links a').forEach(a => a.style.color = '');
+      link.style.color = 'var(--accent)';
+    }
+  });
+});
+
+// SMOOTH SCROLL + offset for fixed nav
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({ top: target.offsetTop - 64, behavior: 'smooth' });
+    }
+  });
+});
+</script>
 </body>
 </html>
