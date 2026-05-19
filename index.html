@@ -424,6 +424,45 @@ section { padding: 100px 5%; }
 .cert-name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
 .cert-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
 
+/* CERTIFICATE BUTTON */
+.cert-card {
+  align-items: flex-start; /* already there, just confirm */
+}
+
+.cert-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cert-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0.75rem;
+  padding: 7px 16px;
+  background: rgba(88, 166, 255, 0.08);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  border-radius: 8px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  width: fit-content;
+}
+
+.cert-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(88, 166, 255, 0.25);
+}
+
+.cert-btn i {
+  font-size: 0.85rem;
+}
+
 /* CONTACT */
 #contact { background: var(--surface); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; align-items: start; }
@@ -1077,20 +1116,29 @@ footer span { color: var(--accent); }
     <span class="section-label reveal">Learning & Growth</span>
     <h2 class="section-heading reveal">Certifications</h2>
     <div class="cert-cards">
+
       <div class="cert-card reveal">
         <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
-        <div>
+        <div class="cert-body">
           <p class="cert-name">The Data Science Course — Complete Bootcamp</p>
           <p class="cert-desc">Udemy (2025) · Data preprocessing, feature engineering, ML (regression, classification, clustering via Scikit-Learn), deep learning with TensorFlow/Keras, and statistical foundations on real-world datasets.</p>
+          <a href="Udemy_DataScience_Certificate.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn">
+            <i class="fa-solid fa-file-pdf"></i> View Certificate
+          </a>
         </div>
       </div>
+
       <div class="cert-card reveal">
         <div class="cert-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-        <div>
+        <div class="cert-body">
           <p class="cert-name">IIT Kharagpur AI4ICPS Certificate Programme</p>
           <p class="cert-desc">TCS iON · Industry AI workflows, key algorithms (SVM, KNN, Naïve Bayes), transformers, computer vision, hyperparameter tuning, and ethical AI deployment.</p>
+          <a href="IIT_KGP_AI4ICPS_Certificate.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn">
+            <i class="fa-solid fa-file-pdf"></i> View Certificate
+          </a>
         </div>
       </div>
+
     </div>
   </div>
 </section>
