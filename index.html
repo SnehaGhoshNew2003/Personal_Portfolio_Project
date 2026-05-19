@@ -51,32 +51,31 @@ body::before {
 }
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 0 5%; height: 64px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  background: rgba(9,12,16,0.8);
+  padding: 0 5%; height: 64px; display: flex; align-items: center;
+  justify-content: space-between; background: rgba(9,12,16,0.8);
   backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
 }
-
-.nav-links {
-  display: flex; gap: 2rem; list-style: none;
-  justify-self: center;
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--muted); font-size: 0.875rem;
+  font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s; position: relative;
 }
-
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px; background: var(--accent); transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { width: 100%; }
 .nav-cta {
   background: var(--accent); color: var(--bg) !important; padding: 8px 18px;
   border-radius: 6px; font-weight: 600 !important; font-size: 0.8rem !important;
   text-decoration: none; transition: opacity 0.2s, transform 0.2s !important;
   display: inline-flex; align-items: center; gap: 6px;
-  justify-self: end;
 }
-
-.hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; padding: 4px;
-  justify-self: end;
-}
+.nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+.nav-cta::after { display: none !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); transition: 0.3s; }
 
 /* HERO */
 #hero {
@@ -547,9 +546,6 @@ footer span { color: var(--accent); }
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .contact-grid { grid-template-columns: 1fr; }
   .project-card.featured { grid-column: span 1; }
-  nav {
-  grid-template-columns: 1fr auto;
-}
   .nav-links { display: none; }
   .nav-cta { display: none; }
   .hamburger { display: flex; }
