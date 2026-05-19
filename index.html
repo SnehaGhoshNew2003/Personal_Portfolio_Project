@@ -148,16 +148,6 @@ nav {
   transition: all 0.2s; font-family: var(--font-body);
 }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-.hero-stats {
-  display: flex; gap: 2rem; margin-top: 3rem;
-  padding-top: 2rem; border-top: 1px solid var(--border);
-}
-.stat-item { text-align: left; }
-.stat-num {
-  font-family: var(--font-display); font-size: 1.8rem;
-  font-weight: 800; color: var(--text); display: block;
-}
-.stat-label { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
 .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
 .hero-card {
   background: var(--surface); border: 1px solid var(--border);
@@ -648,7 +638,6 @@ footer span { color: var(--accent); }
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">SG<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -673,33 +662,12 @@ footer span { color: var(--accent); }
       <h1 class="hero-name">Sneha<span class="line2">Ghosh</span></h1>
       <p class="hero-title">AI Developer · GenAI Engineer</p>
       <p class="hero-desc">Building production-grade intelligent systems across Agentic AI, RAG, NLP, Computer Vision, and related fields . Transforming real-world business requirements into scalable AI applications.</p>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-num">30+</span>
-          <span class="stat-label">Projects Built</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">4</span>
-          <span class="stat-label">Months at Darpin Dynamics</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">8.25</span>
-          <span class="stat-label">CGPA</span>
-        </div>
-      </div>
     </div>
 
     <!-- HERO CARD (right side) -->
     <div class="hero-visual">
       <div style="position:relative;">
         <div class="hero-card">
-          <!--
-            PROFILE PHOTO:
-            • Replace "your-photo.jpg" with the actual path to your image.
-            • If the file is in the same folder as index.html, just use the filename.
-            • The gradient ring + "SG" initials show as a fallback if the image is missing.
-            • Tip: square crop, face centred, at least 300×300 px works best.
-          -->
           <div class="profile-ring">
             <img
               class="profile-photo"
@@ -713,12 +681,12 @@ footer span { color: var(--accent); }
           <p class="card-name">Sneha Ghosh</p>
           <p class="card-role">AI Developer · GenAI Engineer</p>
           <div class="card-tags">
-            <span class="tag">🧠 LangChain</span>
-            <span class="tag">🔥 FastAPI</span>
-            <span class="tag">📊 Power BI</span>
-            <span class="tag">🤖 CrewAI</span>
-            <span class="tag">🐍 Python</span>
-            <span class="tag">🔮 RAG</span>
+            <span class="tag"> LangChain</span>
+            <span class="tag"> FastAPI</span>
+            <span class="tag"> Power BI</span>
+            <span class="tag"> CrewAI</span>
+            <span class="tag"> Python</span>
+            <span class="tag"> RAG</span>
           </div>
           <div class="card-divider"></div>
           <div class="card-info-row">
@@ -806,7 +774,7 @@ footer span { color: var(--accent); }
         <div class="exp-projects">
           <div class="exp-project">
             <div class="proj-title-row">
-              <span class="proj-name">🎙️ AI Voice Calling Automation System</span>
+              <span class="proj-name"> AI Voice Calling Automation System</span>
               <div class="proj-stack">
                 <span class="stack-tag">Voice AI</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">Python</span>
               </div>
@@ -819,7 +787,7 @@ footer span { color: var(--accent); }
           </div>
           <div class="exp-project">
             <div class="proj-title-row">
-              <span class="proj-name">🌐 Multilingual Feedback AI System</span>
+              <span class="proj-name"> Multilingual Feedback AI System</span>
               <div class="proj-stack">
                 <span class="stack-tag">NLP</span><span class="stack-tag">Speech Models</span><span class="stack-tag">PostgreSQL</span>
               </div>
@@ -832,7 +800,7 @@ footer span { color: var(--accent); }
           </div>
           <div class="exp-project">
             <div class="proj-title-row">
-              <span class="proj-name">📧 AI Memory Assistant for Gmail & Calendar</span>
+              <span class="proj-name"> AI Memory Assistant for Gmail & Calendar</span>
               <div class="proj-stack">
                 <span class="stack-tag">RAG</span><span class="stack-tag">LangChain</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">OAuth</span>
               </div>
@@ -845,7 +813,7 @@ footer span { color: var(--accent); }
           </div>
           <div class="exp-project">
             <div class="proj-title-row">
-              <span class="proj-name">🔬 Forensic Face Recognition & Restoration System</span>
+              <span class="proj-name"> Forensic Face Recognition & Restoration System</span>
               <div class="proj-stack">
                 <span class="stack-tag">ResNet</span><span class="stack-tag">GFPGAN</span><span class="stack-tag">OpenCV</span>
               </div>
@@ -857,7 +825,7 @@ footer span { color: var(--accent); }
           </div>
           <div class="exp-project">
             <div class="proj-title-row">
-              <span class="proj-name">🏥 Medical Bill PDF-to-JSON Extraction System</span>
+              <span class="proj-name"> Medical Bill PDF-to-JSON Extraction System</span>
               <div class="proj-stack">
                 <span class="stack-tag">PaddleOCR</span><span class="stack-tag">FastAPI</span><span class="stack-tag">Docker</span><span class="stack-tag">Ollama</span>
               </div>
