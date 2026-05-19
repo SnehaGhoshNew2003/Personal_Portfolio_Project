@@ -547,8 +547,17 @@ footer span { color: var(--accent); }
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .contact-grid { grid-template-columns: 1fr; }
   .project-card.featured { grid-column: span 1; }
+    nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .nav-links { display: none; }
-  .nav-cta { display: none; }
+   .nav-cta {
+    display: inline-flex;
+    font-size: 0.75rem !important;
+    padding: 7px 14px;
+  }
   .hamburger { display: flex; }
   .form-row { grid-template-columns: 1fr; }
 }
